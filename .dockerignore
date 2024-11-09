@@ -4,7 +4,7 @@
 !cmd
 !docs
 !hack
-!internal
+!private
 !pkg
 !website
 !.golangci.yml

@@ -11,7 +11,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/siderolabs/talos/internal/pkg/cgroups"
+	"github.com/siderolabs/talos/private/pkg/cgroups"
 )
 
 type edgeType string

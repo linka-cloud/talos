@@ -376,7 +376,7 @@ COPY --from=embed-abbrev-generate /src/_out/talos-metadata /_out/talos-metadata
 COPY --from=embed-abbrev-generate /src/_out/signing_key.x509 /_out/signing_key.x509
 
 FROM tools AS selinux
-COPY ./internal/pkg/selinux/policy/* /selinux/
+COPY ./private/pkg/selinux/policy/* /selinux/
 RUN mkdir /policy; secilc -o /policy/policy.33 -f /policy/file_contexts -c 33 /selinux/**/*.cil -vvvvv -O
 
 FROM scratch AS selinux-generate
@@ -419,11 +419,11 @@ COPY --from=go-generate /src/pkg/machinery/config/types/ /pkg/machinery/config/t
 COPY --from=go-generate /src/pkg/machinery/nethelpers/ /pkg/machinery/nethelpers/
 COPY --from=go-generate /src/pkg/machinery/extensions/ /pkg/machinery/extensions/
 COPY --from=ipxe-generate / /pkg/provision/providers/vm/internal/ipxe/data/ipxe/
-COPY --from=selinux-generate / /internal/pkg/selinux/
+COPY --from=selinux-generate / /private/pkg/selinux/
 COPY --from=embed-abbrev / /
-COPY --from=pkg-ca-certificates /etc/ssl/certs/ca-certificates /internal/app/machined/pkg/controllers/secrets/data/
-COPY --from=microsoft-key-keys / /internal/pkg/secureboot/database/certs/
-COPY --from=microsoft-db-keys / /internal/pkg/secureboot/database/certs/
+COPY --from=pkg-ca-certificates /etc/ssl/certs/ca-certificates /private/app/machined/pkg/controllers/secrets/data/
+COPY --from=microsoft-key-keys / /private/pkg/secureboot/database/certs/
+COPY --from=microsoft-db-keys / /private/pkg/secureboot/database/certs/
 
 # The base target provides a container that can be used to build all Talos
 # assets.
@@ -431,13 +431,13 @@ COPY --from=microsoft-db-keys / /internal/pkg/secureboot/database/certs/
 FROM build-go AS base
 COPY ./cmd ./cmd
 COPY ./pkg ./pkg
-COPY ./internal ./internal
+COPY ./private ./private
 COPY --from=generate /pkg/flannel/ ./pkg/flannel/
 COPY --from=generate /pkg/imager/ ./pkg/imager/
 COPY --from=generate /pkg/machinery/ ./pkg/machinery/
-COPY --from=generate /internal/app/machined/pkg/controllers/secrets/data/ ./internal/app/machined/pkg/controllers/secrets/data/
-COPY --from=generate /internal/pkg/secureboot/database/certs/ ./internal/pkg/secureboot/database/certs/
-COPY --from=generate /internal/pkg/selinux/ ./internal/pkg/selinux/
+COPY --from=generate /private/app/machined/pkg/controllers/secrets/data/ ./private/app/machined/pkg/controllers/secrets/data/
+COPY --from=generate /private/pkg/secureboot/database/certs/ ./private/pkg/secureboot/database/certs/
+COPY --from=generate /private/pkg/selinux/ ./private/pkg/selinux/
 COPY --from=embed / ./
 RUN --mount=type=cache,target=/.cache go list all >/dev/null
 WORKDIR /src/pkg/machinery
@@ -452,14 +452,14 @@ RUN --mount=type=cache,target=/.cache govulncheck ./...
 # The init target builds the init binary.
 
 FROM base AS init-build-amd64
-WORKDIR /src/internal/app/init
+WORKDIR /src/private/app/init
 ARG GO_BUILDFLAGS
 ARG GO_LDFLAGS
 RUN --mount=type=cache,target=/.cache GOOS=linux GOARCH=amd64 GOAMD64=v1 go build ${GO_BUILDFLAGS} -ldflags "${GO_LDFLAGS}" -o /init
 RUN chmod +x /init
 
 FROM base AS init-build-arm64
-WORKDIR /src/internal/app/init
+WORKDIR /src/private/app/init
 ARG GO_BUILDFLAGS
 ARG GO_LDFLAGS
 RUN --mount=type=cache,target=/.cache GOOS=linux GOARCH=arm64 go build ${GO_BUILDFLAGS} -ldflags "${GO_LDFLAGS}" -o /init
@@ -473,7 +473,7 @@ COPY --from=init-build /init /init
 # The machined target builds the machined binary.
 
 FROM base AS machined-build-amd64
-WORKDIR /src/internal/app/machined
+WORKDIR /src/private/app/machined
 ARG GO_BUILDFLAGS
 ARG GO_LDFLAGS
 ARG GOAMD64
@@ -481,7 +481,7 @@ RUN --mount=type=cache,target=/.cache GOOS=linux GOARCH=amd64 GOAMD64=${GOAMD64}
 RUN chmod +x /machined
 
 FROM base AS machined-build-arm64
-WORKDIR /src/internal/app/machined
+WORKDIR /src/private/app/machined
 ARG GO_BUILDFLAGS
 ARG GO_LDFLAGS
 RUN --mount=type=cache,target=/.cache GOOS=linux GOARCH=arm64 go build ${GO_BUILDFLAGS} -ldflags "${GO_LDFLAGS}" -o /machined
@@ -1028,7 +1028,7 @@ ARG GOAMD64
 RUN --mount=type=cache,target=/.cache GOOS=linux GOARCH=amd64 GOAMD64=${GOAMD64} go test -v -c ${GO_BUILDFLAGS} \
     -ldflags "${GO_LDFLAGS}" \
     -tags integration,integration_api,integration_cli,integration_k8s \
-    ./internal/integration
+    ./private/integration
 
 FROM scratch AS integration-test-linux-amd64
 COPY --from=integration-test-linux-amd64-build /src/integration.test /integration-test-linux-amd64
@@ -1039,7 +1039,7 @@ ARG GO_LDFLAGS
 RUN --mount=type=cache,target=/.cache GOOS=linux GOARCH=arm64 go test -v -c ${GO_BUILDFLAGS} \
     -ldflags "${GO_LDFLAGS}" \
     -tags integration,integration_api,integration_cli,integration_k8s \
-    ./internal/integration
+    ./private/integration
 
 FROM scratch AS integration-test-linux-arm64
 COPY --from=integration-test-linux-arm64-build /src/integration.test /integration-test-linux-arm64
@@ -1055,7 +1055,7 @@ ARG GOAMD64
 RUN --mount=type=cache,target=/.cache GOOS=linux GOARCH=amd64 GOAMD64=${GOAMD64} go test -v -c ${GO_BUILDFLAGS} \
     -ldflags "${GO_LDFLAGS}" \
     -tags integration,integration_provision \
-    ./internal/integration
+    ./private/integration
 
 FROM scratch AS integration-test-provision-linux
 COPY --from=integration-test-provision-linux-build /src/integration.test /integration-test-provision-linux-amd64

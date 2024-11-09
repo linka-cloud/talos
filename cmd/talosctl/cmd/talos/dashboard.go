@@ -10,7 +10,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/siderolabs/talos/internal/pkg/dashboard"
+	"github.com/siderolabs/talos/private/pkg/dashboard"
 	"github.com/siderolabs/talos/pkg/machinery/client"
 )
 

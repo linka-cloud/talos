@@ -206,7 +206,7 @@ Unit tests can be run in buildx with `make unit-tests`, on Ubuntu systems some t
 Most of the unit-tests can be run standalone as well, with regular `go test`, or using IDE integration:
 
 ```bash
-go test -v ./internal/pkg/circular/
+go test -v ./private/pkg/circular/
 ```
 
 This provides much faster feedback loop, but some tests require either elevated privileges (running as `root`) or additional binaries available only in Talos `rootfs` (containerd tests).
@@ -214,7 +214,7 @@ This provides much faster feedback loop, but some tests require either elevated 
 Running tests as root can be done with `-exec` flag to `go test`, but this is risky, as test code has root access and can potentially make undesired changes:
 
 ```bash
-go test -exec sudo  -v ./internal/app/machined/pkg/controllers/network/...
+go test -exec sudo  -v ./private/app/machined/pkg/controllers/network/...
 ```
 
 ## Go Profiling

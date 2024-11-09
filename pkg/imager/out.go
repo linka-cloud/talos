@@ -29,9 +29,9 @@ import (
 	"gopkg.in/yaml.v3"
 
 	"github.com/siderolabs/talos/cmd/installer/pkg/install"
-	"github.com/siderolabs/talos/internal/app/machined/pkg/runtime/v1alpha1/bootloader/options"
-	"github.com/siderolabs/talos/internal/pkg/secureboot/database"
-	"github.com/siderolabs/talos/internal/pkg/secureboot/pesign"
+	"github.com/siderolabs/talos/private/app/machined/pkg/runtime/v1alpha1/bootloader/options"
+	"github.com/siderolabs/talos/private/pkg/secureboot/database"
+	"github.com/siderolabs/talos/private/pkg/secureboot/pesign"
 	"github.com/siderolabs/talos/pkg/imager/filemap"
 	"github.com/siderolabs/talos/pkg/imager/iso"
 	"github.com/siderolabs/talos/pkg/imager/ova"

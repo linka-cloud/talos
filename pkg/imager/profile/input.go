@@ -20,8 +20,8 @@ import (
 	"github.com/siderolabs/gen/value"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/siderolabs/talos/internal/pkg/secureboot/measure"
-	"github.com/siderolabs/talos/internal/pkg/secureboot/pesign"
+	"github.com/siderolabs/talos/private/pkg/secureboot/measure"
+	"github.com/siderolabs/talos/private/pkg/secureboot/pesign"
 	"github.com/siderolabs/talos/pkg/archiver"
 	"github.com/siderolabs/talos/pkg/imager/profile/internal/signer/aws"
 	"github.com/siderolabs/talos/pkg/imager/profile/internal/signer/azure"

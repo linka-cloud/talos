@@ -22,7 +22,7 @@ import (
 
 	"github.com/siderolabs/talos/cmd/talosctl/cmd/talos/cgroupsprinter"
 	"github.com/siderolabs/talos/cmd/talosctl/pkg/talos/helpers"
-	"github.com/siderolabs/talos/internal/pkg/cgroups"
+	"github.com/siderolabs/talos/private/pkg/cgroups"
 	"github.com/siderolabs/talos/pkg/cli"
 	"github.com/siderolabs/talos/pkg/machinery/api/common"
 	"github.com/siderolabs/talos/pkg/machinery/client"

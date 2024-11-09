@@ -10,7 +10,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/siderolabs/talos/internal/pkg/extensions"
+	"github.com/siderolabs/talos/private/pkg/extensions"
 	"github.com/siderolabs/talos/pkg/machinery/constants"
 	extinterface "github.com/siderolabs/talos/pkg/machinery/extensions"
 	"github.com/siderolabs/talos/pkg/machinery/imager/quirks"

@@ -13,7 +13,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/siderolabs/talos/internal/pkg/secureboot/pesign"
+	"github.com/siderolabs/talos/private/pkg/secureboot/pesign"
 )
 
 // SecureBootSigner implements pesign.CertificateSigner interface.

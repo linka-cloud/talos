@@ -29,13 +29,13 @@ $ tree .
 Talos is comprised of applications designed to handle the various domains of an operating system.
 The following requirements must be adhered to by an `app`:
 
-- anything ran as a service, that is maintained by us, should live under `internal/app`
+- anything ran as a service, that is maintained by us, should live under `private/app`
 - each `app` is allowed at most 1 level of an `internal` package
 
 ## Internal Packages
 
 There are a number of packages we will need to maintain that are strongly coupled with Talos business logic.
-These package should be housed within the `internal/pkg` directory.
+These package should be housed within the `private/pkg` directory.
 The criteria for deciding if a package should be housed here are as follows:
 
 - code that is a high level abstraction specific to the internals of Talos

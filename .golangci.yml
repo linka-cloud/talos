@@ -168,10 +168,10 @@ issues:
     - path: cmd/talosctl/cmd
       linters:
         - dupl
-    - path: internal/app/machined/internal/phase
+    - path: private/app/machined/internal/phase
       linters:
         - dupl
-    - path: internal/app/machined/pkg/system/services
+    - path: private/app/machined/pkg/system/services
       linters:
         - dupl
     - path: cmd/talosctl/cmd/mgmt
@@ -198,87 +198,87 @@ issues:
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/machined/pkg/controllers/cri
+    - path: private/app/machined/pkg/controllers/cri
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/machined/pkg/controllers/kubeaccess/serviceaccount
+    - path: private/app/machined/pkg/controllers/kubeaccess/serviceaccount
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/machined/pkg/controllers/perf
+    - path: private/app/machined/pkg/controllers/perf
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/machined/pkg/system/events
+    - path: private/app/machined/pkg/system/events
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/machined/pkg/system/health
+    - path: private/app/machined/pkg/system/health
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/machined/pkg/system/runner/containerd
+    - path: private/app/machined/pkg/system/runner/containerd
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/machined/pkg/system/runner/goroutine
+    - path: private/app/machined/pkg/system/runner/goroutine
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/machined/pkg/system/runner/process
+    - path: private/app/machined/pkg/system/runner/process
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/machined/pkg/system/runner/restart
+    - path: private/app/machined/pkg/system/runner/restart
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/machined/pkg/system
+    - path: private/app/machined/pkg/system
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/maintenance
+    - path: private/app/maintenance
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/maintenance/server
+    - path: private/app/maintenance/server
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/poweroff
+    - path: private/app/poweroff
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/trustd/internal/reg
+    - path: private/app/trustd/internal/reg
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/app/trustd
+    - path: private/app/trustd
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/pkg/containers/image
+    - path: private/pkg/containers/image
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/pkg/etcd
+    - path: private/pkg/etcd
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/pkg/install
+    - path: private/pkg/install
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/pkg/mount
+    - path: private/pkg/mount
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/pkg/mount/switchroot
+    - path: private/pkg/mount/switchroot
       text: "should have a package comment"
       linters:
         - revive
-    - path: internal/pkg/tui/components
+    - path: private/pkg/tui/components
       text: "should have a package comment"
       linters:
         - revive

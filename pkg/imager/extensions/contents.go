@@ -12,7 +12,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/siderolabs/talos/internal/pkg/extensions"
+	"github.com/siderolabs/talos/private/pkg/extensions"
 )
 
 func findExtensionsWithKernelModules(extensions []*extensions.Extension) []string {
